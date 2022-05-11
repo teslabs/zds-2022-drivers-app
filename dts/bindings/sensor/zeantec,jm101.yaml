@@ -1,0 +1,31 @@
+# Copyright (c) 2022 Nordic Semiconductor ASA
+# SPDX-License-Identifier: Apache-2.0
+
+description: |
+  JM-101 is a fingerprint sensor. It is based on Synochip AS608 MCU. It is sold
+  with many names, e.g. AS608, JM-101, FPM10A/DYI50, etc.
+
+compatible: "zeantec,jm101"
+
+include: base.yaml
+
+properties:
+  uart:
+    type: phandle
+    required: true
+    description: UART port to which the sensor is connected to.
+
+  address:
+    type: int
+    required: false
+    default: 0xffffffff
+    description: |
+      The address of the sensor. Defaults to 0xFFFFFFFF, which is the factory
+      default.
+
+  touch-gpios:
+    type: phandle-array
+    required: false
+    description: |
+      Touch input GPIO (active high). When the sensor is touched, the GPIO is
+      set to high. It is used to trigger a fingerprint read.

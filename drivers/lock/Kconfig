@@ -1,0 +1,18 @@
+menuconfig LOCK
+	bool "Locks"
+
+if LOCK
+
+module = LOCK
+module-str = lock
+source "subsys/logging/Kconfig.template.log_config"
+
+config LOCK_INIT_PRIORITY
+	int "Lock init priority"
+	default 90
+	help
+	  Lock initialization priority.
+
+rsource "Kconfig.servo"
+
+endif # LOCK

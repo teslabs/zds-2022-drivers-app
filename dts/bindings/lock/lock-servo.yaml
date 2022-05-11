@@ -1,0 +1,57 @@
+# Copyright (c) 2022 Nordic Semiconductor ASA
+# SPDX-License-Identifier: Apache-2.0
+
+description: Lock driven by a servo
+
+compatible: "lock-servo"
+
+include: base.yaml
+
+properties:
+    pwms:
+      required: true
+      type: phandle-array
+      description: |
+        PWM specifier driving the servo motor.
+
+    open-pulse-us:
+      required: true
+      type: int
+      description: |
+        Lock open position pulse width (microseconds).
+
+    closed-pulse-us:
+      required: true
+      type: int
+      description: |
+        Lock closed position pulse width (microseconds).
+
+    io-channels:
+      required: true
+      type: phandle-array
+      description: |
+        ADC specifier for servo feedback.
+
+    fb-gain:
+      required: true
+      type: int
+      description: |
+        Servo feedback gain (uV/usec).
+
+    fb-offset:
+      required: true
+      type: int
+      description: |
+        Servo feedback offset (uV).
+
+    max-target-err-us:
+      required: true
+      type: int
+      description: |
+        Maximum target pulse error (+/-), in microseconds.
+
+    max-action-time-ms:
+      required: true
+      type: int
+      description: |
+        Maximum time to complete open/close actions (msec).
