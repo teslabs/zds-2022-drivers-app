@@ -1,6 +1,6 @@
 # Mastering Zephyr Driver Development
 
-This repository contains the code for the "Mastering Zephyr Driver Development"
+This repository contains the code for the [Mastering Zephyr Driver Development][talk]
 talk given at Zephyr Developer Summit 2022.
 
 The application is a prototype of a _smart_ lock. It allows to open/close a lock
@@ -8,8 +8,9 @@ by both using a fingerprint reader and BLE. It is based on the official
 [example-application][example-application] and it tries to illustrate
 the most relevant concepts used when developing Zephyr drivers.
 
-https://user-images.githubusercontent.com/25011557/168632171-69db841b-a3d1-43d3-8da5-193831f6ca90.mp4
+https://user-images.githubusercontent.com/25011557/170713288-bfdc6ebe-1bb2-4582-99e8-25f123920b6b.mp4
 
+[talk]: https://github.com/teslabs/zds-2022-drivers
 [example-application]: https://github.com/zephyrproject-rtos/example-application
 
 ## Getting Started
