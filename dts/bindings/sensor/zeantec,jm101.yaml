@@ -10,18 +10,8 @@ compatible: "zeantec,jm101"
 include: base.yaml
 
 properties:
-  uart:
-    type: phandle
+  reg:
     required: true
-    description: UART port to which the sensor is connected to.
-
-  address:
-    type: int
-    required: false
-    default: 0xffffffff
-    description: |
-      The address of the sensor. Defaults to 0xFFFFFFFF, which is the factory
-      default.
 
   touch-gpios:
     type: phandle-array

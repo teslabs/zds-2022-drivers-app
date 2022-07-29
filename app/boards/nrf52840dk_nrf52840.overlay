@@ -4,13 +4,6 @@
  */
 
 / {
-	fpreader: fpreader {
-		compatible = "zeantec,jm101";
-		label = "FPREADER";
-		uart = <&uart1>;
-		touch-gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
-	};
-
 	lock: lock-servo {
 		compatible = "lock-servo";
 		label = "LOCK";
@@ -22,6 +15,18 @@
 		fb-offset = <4206250>;
 		max-target-err-us = <50>;
 		max-action-time-ms = <2000>;
+	};
+};
+
+&uart1 {
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	fpreader: fpreader@ffffffff {
+		compatible = "zeantec,jm101";
+		reg = <0xffffffff>;
+		label = "FPREADER";
+		touch-gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
 	};
 };
 

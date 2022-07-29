@@ -622,8 +622,8 @@ static int jm101_init(const struct device *dev)
 	};                                                                     \
                                                                                \
 	static const struct jm101_config jm101_config_##i = {                  \
-		.uart = DEVICE_DT_GET(DT_INST_PHANDLE(i, uart)),               \
-		.addr = DT_INST_PROP(i, address),                              \
+		.uart = DEVICE_DT_GET(DT_INST_BUS(i)),                         \
+		.addr = DT_INST_REG_ADDR(i),                                   \
 		IF_ENABLED(CONFIG_JM101_TRIGGER,                               \
 			   (.touch = GPIO_DT_SPEC_INST_GET_OR(i, touch_gpios,  \
 							      {}), )) /* */    \
