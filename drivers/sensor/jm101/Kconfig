@@ -1,12 +1,10 @@
 # Copyright (c) 2022 Nordic Semiconductor ASA
 # SPDX-License-Identifier: Apache-2.0
 
-DT_COMPAT_SYNODATA_JM101 := zeantec,jm101
-
 config JM101
 	bool "JM-101 fingerprint sensor"
-	depends on GPIO && SERIAL && UART_INTERRUPT_DRIVEN
-	default $(dt_compat_enabled,$(DT_COMPAT_SYNODATA_JM101))
+	default y
+	depends on GPIO && SERIAL && UART_INTERRUPT_DRIVEN && DT_HAS_ZEANTEC_JM101_ENABLED
 	help
 	  JM-101 fingerprint sensor.
 
