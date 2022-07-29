@@ -6,7 +6,6 @@
 / {
 	lock: lock-servo {
 		compatible = "lock-servo";
-		label = "LOCK";
 		pwms = <&pwm0 0 PWM_MSEC(20) PWM_POLARITY_NORMAL>;
 		open-pulse-us = <2100>;
 		closed-pulse-us = <1250>;
@@ -25,7 +24,6 @@
 	fpreader: fpreader@ffffffff {
 		compatible = "zeantec,jm101";
 		reg = <0xffffffff>;
-		label = "FPREADER";
 		touch-gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
 	};
 };
