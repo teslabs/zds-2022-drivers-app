@@ -8,6 +8,8 @@ by both using a fingerprint reader and BLE. It is based on the official
 [example-application][example-application] and it tries to illustrate
 the most relevant concepts used when developing Zephyr drivers.
 
+[![Video](http://img.youtube.com/vi/o-f2qCd2AXo/0.jpg)](http://www.youtube.com/watch?v=o-f2qCd2AXo "Mastering Zephyr Driver Development")
+
 https://user-images.githubusercontent.com/25011557/170713288-bfdc6ebe-1bb2-4582-99e8-25f123920b6b.mp4
 
 [talk]: https://github.com/teslabs/zds-2022-drivers
