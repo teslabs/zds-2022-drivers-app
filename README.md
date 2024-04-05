@@ -40,7 +40,7 @@ west update
 The application can be built by running:
 
 ```shell
-west build -b nrf52840dk_nrf52840 -s app
+west build -b nrf52840dk/nrf52840 -s app
 ```
 
 Note that any other board may be used if an appropriate overlay is provided (see
