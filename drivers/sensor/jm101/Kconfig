@@ -4,7 +4,10 @@
 config JM101
 	bool "JM-101 fingerprint sensor"
 	default y
-	depends on GPIO && SERIAL && UART_INTERRUPT_DRIVEN && DT_HAS_ZEANTEC_JM101_ENABLED
+	depends on DT_HAS_ZEANTEC_JM101_ENABLED
+	select GPIO
+	select SERIAL
+	select UART_INTERRUPT_DRIVEN
 	help
 	  JM-101 fingerprint sensor.
 

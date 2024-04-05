@@ -186,7 +186,7 @@ void fp_trig_handler(const struct device *dev,
  * Entry point
  ******************************************************************************/
 
-void main(void)
+int main(void)
 {
 	int ret;
 	const struct sensor_trigger trig = {
@@ -196,12 +196,12 @@ void main(void)
 
 	if (!device_is_ready(fpreader)) {
 		printk("Fingerprint reader not ready");
-		return;
+		return 0;
 	}
 
 	if (!device_is_ready(lock)) {
 		printk("Lock not ready");
-		return;
+		return 0;
 	}
 
 	/* run enroll (will be skipped if sw0 is not pressed) */
@@ -217,13 +217,15 @@ void main(void)
 	ret = bt_enable(NULL);
 	if (ret < 0) {
 		printk("Bluetooth init failed (ret %d)\n", ret);
-		return;
+		return 0;
 	}
 
 	ret = bt_le_adv_start(BT_LE_ADV_CONN, ad, ARRAY_SIZE(ad), sd,
 			      ARRAY_SIZE(sd));
 	if (ret < 0) {
 		printk("Advertising failed to start (%d)", ret);
-		return;
+		return 0;
 	}
+
+	return 0;
 }

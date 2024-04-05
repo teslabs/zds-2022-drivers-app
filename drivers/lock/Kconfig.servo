@@ -1,6 +1,8 @@
 config LOCK_SERVO
 	bool "Servo-controlled lock"
 	default y
-	depends on PWM && ADC && DT_HAS_LOCK_SERVO_ENABLED
+	depends on DT_HAS_LOCK_SERVO_ENABLED
+	select PWM
+	select ADC
 	help
 	  Enables a servo-controlled lock driver.

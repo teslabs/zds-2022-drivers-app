@@ -25,7 +25,7 @@ jobs:
       - name: Build firmware
         working-directory: app
         run: |
-          west build -b nrf52840dk_nrf52840 -s app
+          west build -b nrf52840dk/nrf52840 -s app
 
       - name: Archive firmware
         uses: actions/upload-artifact@v2
