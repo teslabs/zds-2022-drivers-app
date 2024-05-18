@@ -195,12 +195,12 @@ int main(void)
 	};
 
 	if (!device_is_ready(fpreader)) {
-		printk("Fingerprint reader not ready");
+		printk("Fingerprint reader not ready\n");
 		return 0;
 	}
 
 	if (!device_is_ready(lock)) {
-		printk("Lock not ready");
+		printk("Lock not ready\n");
 		return 0;
 	}
 
@@ -210,7 +210,7 @@ int main(void)
 	/* configure fingerprint trigger */
 	ret = sensor_trigger_set(fpreader, &trig, fp_trig_handler);
 	if (ret < 0) {
-		printk("Could not configure trigger");
+		printk("Could not configure trigger\n");
 	}
 
 	/* enable Bluetooth and start advertising */
@@ -223,7 +223,7 @@ int main(void)
 	ret = bt_le_adv_start(BT_LE_ADV_CONN, ad, ARRAY_SIZE(ad), sd,
 			      ARRAY_SIZE(sd));
 	if (ret < 0) {
-		printk("Advertising failed to start (%d)", ret);
+		printk("Advertising failed to start (%d)\n", ret);
 		return 0;
 	}
 
