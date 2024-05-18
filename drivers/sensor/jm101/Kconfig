@@ -8,6 +8,7 @@ config JM101
 	select GPIO
 	select SERIAL
 	select UART_INTERRUPT_DRIVEN
+	select UART_USE_RUNTIME_CONFIGURE
 	help
 	  JM-101 fingerprint sensor.
 

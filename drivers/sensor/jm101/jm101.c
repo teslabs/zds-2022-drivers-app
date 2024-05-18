@@ -576,6 +576,7 @@ static int jm101_init(const struct device *dev)
 
 	ret = uart_configure(config->uart, &uart_config);
 	if (ret < 0) {
+		LOG_ERR("Could not configure UART (%d)", ret);
 		return ret;
 	}
 
