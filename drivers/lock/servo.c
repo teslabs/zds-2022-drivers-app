@@ -48,7 +48,6 @@ static int servo_set_pulse(const struct device *dev, uint32_t target_pulse_us)
 	int16_t buf;
 	int32_t pulse_mv;
 	int32_t pulse_us;
-	int32_t vref_mv;
 	int32_t timeout = (int32_t)config->max_action_time_ms;
 	bool finished = false;
 	int ret;
@@ -68,12 +67,6 @@ static int servo_set_pulse(const struct device *dev, uint32_t target_pulse_us)
 	adc_seq.oversampling = config->adc.oversampling;
 	adc_seq.options = NULL;
 
-	if (config->adc.channel_cfg.reference == ADC_REF_INTERNAL) {
-		vref_mv = (int32_t)adc_ref_internal(config->adc.dev);
-	} else {
-		vref_mv = config->adc.vref_mv;
-	}
-
 	while (!finished) {
 		ret = adc_read(config->adc.dev, &adc_seq);
 		if (ret < 0) {
@@ -81,9 +74,7 @@ static int servo_set_pulse(const struct device *dev, uint32_t target_pulse_us)
 		}
 
 		pulse_mv = buf;
-		ret = adc_raw_to_millivolts(vref_mv,
-					    config->adc.channel_cfg.gain,
-					    config->adc.resolution, &pulse_mv);
+		ret = adc_raw_to_millivolts_dt(&config->adc, &pulse_mv);
 		if (ret < 0) {
 			return ret;
 		}
@@ -142,17 +133,17 @@ static int lock_servo_init(const struct device *dev)
 	const struct lock_servo_config *config = dev->config;
 	int ret;
 
-	if (!device_is_ready(config->servo.dev)) {
+	if (!pwm_is_ready_dt(&config->servo)) {
 		LOG_ERR("Servo PWM controller not ready");
 		return -ENODEV;
 	}
 
-	if (!device_is_ready(config->adc.dev)) {
+	if (!adc_is_ready_dt(&config->adc)) {
 		LOG_ERR("Servo feedback ADC device not ready");
 		return -ENODEV;
 	}
 
-	ret = adc_channel_setup(config->adc.dev, &config->adc.channel_cfg);
+	ret = adc_channel_setup_dt(&config->adc);
 	if (ret < 0) {
 		LOG_ERR("Could not configure ADC cannel (%d)", ret);
 		return ret;

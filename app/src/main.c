@@ -106,7 +106,7 @@ static int enroll(void)
 	const struct gpio_dt_spec btn = GPIO_DT_SPEC_GET(DT_ALIAS(sw0), gpios);
 	int ret;
 
-	if (!device_is_ready(btn.port)) {
+	if (!gpio_is_ready_dt(&btn)) {
 		return -ENODEV;
 	}
 

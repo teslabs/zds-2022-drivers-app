@@ -589,7 +589,7 @@ static int jm101_init(const struct device *dev)
 #ifdef CONFIG_JM101_TRIGGER
 	/* configure touch GPIO */
 	if (config->touch.port != NULL) {
-		if (!device_is_ready(config->touch.port)) {
+		if (!gpio_is_ready_dt(&config->touch)) {
 			LOG_ERR("Touch GPIO controller not ready");
 			return -ENODEV;
 		}
