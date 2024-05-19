@@ -22,7 +22,7 @@ struct lock_servo_config {
 	uint32_t closed_pulse_us;
 	struct adc_dt_spec adc;
 	int32_t fb_gain;
-	int32_t fb_offset;
+	int32_t fb_offset_uv;
 	int32_t max_target_err_us;
 	uint32_t max_action_time_ms;
 };
@@ -80,7 +80,7 @@ static int servo_set_pulse(const struct device *dev, uint32_t target_pulse_us)
 		}
 
 		/* convert to usec */
-		pulse_us = ((pulse_mv * 1000) - config->fb_offset) /
+		pulse_us = ((pulse_mv * 1000) - config->fb_offset_uv) /
 			   config->fb_gain;
 
 		if (target_pulse_us >= (pulse_us - config->max_target_err_us) &&
@@ -159,7 +159,7 @@ static int lock_servo_init(const struct device *dev)
 		.closed_pulse_us = DT_INST_PROP(i, closed_pulse_us),           \
 		.adc = ADC_DT_SPEC_INST_GET(i),                                \
 		.fb_gain = DT_INST_PROP(i, fb_gain),                           \
-		.fb_offset = DT_INST_PROP(i, fb_offset),                       \
+		.fb_offset_uv = DT_INST_PROP(i, fb_offset_microvolt),          \
 		.max_target_err_us = DT_INST_PROP(i, max_target_err_us),       \
 		.max_action_time_ms = DT_INST_PROP(i, max_action_time_ms),     \
 	};                                                                     \

@@ -38,7 +38,7 @@ properties:
       description: |
         Servo feedback gain (uV/usec).
 
-    fb-offset:
+    fb-offset-microvolt:
       required: true
       type: int
       description: |

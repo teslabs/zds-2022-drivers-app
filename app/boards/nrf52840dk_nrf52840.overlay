@@ -11,7 +11,7 @@
 		closed-pulse-us = <1250>;
 		io-channels = <&adc 0>;
 		fb-gain = <(-1765)>;
-		fb-offset = <4206250>;
+		fb-offset-microvolt = <4206250>;
 		max-target-err-us = <50>;
 		max-action-time-ms = <2000>;
 	};
